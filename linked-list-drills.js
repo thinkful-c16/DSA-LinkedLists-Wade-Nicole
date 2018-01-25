@@ -22,7 +22,6 @@ class LinkedList {
     }
     else {
       let currNode = this.head;
-      console.log(currNode.next);
       while(currNode.next.value !== key) {
         currNode = currNode.next;
       }
@@ -47,23 +46,21 @@ class LinkedList {
     }
   }
 
-  insertAt(item, keyOne, keyTwo) {
+  insertAt(item, position) {
     if (this.head === null) {
       this.insertFirst(item);
     }
     else {
+      let currPosition = 1;
       let currNode = this.head;
-      let nextNode = this.head.next;
-      while ((currNode.value !== keyOne) && (currNode.next.value !== keyTwo)) {
+      let prevNode = this.head;
+      while (currPosition !== position) {
+        prevNode = currNode;
         currNode = currNode.next;
-        nextNode = currNode.next;
+        currPosition++;
       }
-      if (currNode.next === null) {
-        throw new Error('Key pair not found in list, could not insert between');
-      }
-      currNode.next = new _Node(item, currNode.next);
+      prevNode.next = new _Node(item, currNode);
     }
-
   }
 
   insertLast(item) {
@@ -111,7 +108,7 @@ class LinkedList {
       currNode = currNode.next;
     }
     if(currNode === null){
-      console.log(`There\'s nobody here`);
+      console.log('There\'s nobody here');
       return;
     }
     previousNode.next = currNode.next;
@@ -131,6 +128,7 @@ function main() {
   SLL.remove('squirrel');
   SLL.insertBefore('Athena', 'Boomer');
   SLL.insertAfter('Hotdog', 'Helo');
+  SLL.insertAt('Kat', 3);
   console.log(JSON.stringify(SLL, null, 2));
 
 }
