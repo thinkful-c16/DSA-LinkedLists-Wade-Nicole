@@ -115,10 +115,9 @@ class LinkedList {
   }
 }
 
+const SLL = new LinkedList;
+
 function main() {
-
-  const SLL = new LinkedList;
-
   SLL.insertLast('Apollo');
   SLL.insertLast('Boomer');
   SLL.insertLast('Helo');
@@ -129,8 +128,78 @@ function main() {
   SLL.insertBefore('Athena', 'Boomer');
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3);
-  console.log(JSON.stringify(SLL, null, 2));
-
+  SLL.remove('Tauhida');
+//   console.log(JSON.stringify(SLL, null, 2));
 }
 
+const supplemental = {
+
+  display: function(list){
+    console.log(JSON.stringify(list, null, 2));
+  },
+
+  size: function(list){
+    let total = 1;
+    let currNode = list.head;
+    if(!currNode){
+      total = 0;
+      return total;
+    }
+    else {
+      while(currNode.next !== null){
+        currNode = currNode.next;
+        total++;
+      }
+      return total;
+    }
+  },
+
+  isEmpty: function(list){
+    if (!list.head) {
+      return 'The list is empty';
+    }
+    else {
+      return 'The list is not empty';
+    }
+  },
+
+  findPrevious: function(list, item){
+    if (!list.head) {
+      return 'There is no previous item';
+    }
+    else {
+      let currNode = list.head;
+      let prevNode = null;
+      while(currNode.value !== item) {
+        prevNode = currNode;
+        currNode = currNode.next;
+      }
+      return 'The previous item is: ' + prevNode.value;
+    }
+  },
+  
+  findLast: function(list) {
+    if(!list.head) {
+      return 'There is no last item';
+    }
+    if(list.head === null) {
+      return list.head.value;
+    }
+    else {
+      let currNode = list.head;
+      while(currNode.next !== null) {
+        currNode = currNode.next;
+      }
+      console.log(currNode);
+      return 'The last item is: ' + currNode.value;
+    }
+  }
+};
+
+
 main();
+supplemental.display(SLL);
+console.log('The size of the list is:', supplemental.size(SLL));
+console.log(supplemental.isEmpty(SLL));
+console.log(supplemental.findPrevious(SLL, 'Starbuck'));
+console.log(supplemental.findLast(SLL));
