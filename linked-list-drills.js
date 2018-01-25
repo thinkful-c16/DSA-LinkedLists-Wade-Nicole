@@ -47,6 +47,25 @@ class LinkedList {
     }
   }
 
+  insertAt(item, keyOne, keyTwo) {
+    if (this.head === null) {
+      this.insertFirst(item);
+    }
+    else {
+      let currNode = this.head;
+      let nextNode = this.head.next;
+      while ((currNode.value !== keyOne) && (currNode.next.value !== keyTwo)) {
+        currNode = currNode.next;
+        nextNode = currNode.next;
+      }
+      if (currNode.next === null) {
+        throw new Error('Key pair not found in list, could not insert between');
+      }
+      currNode.next = new _Node(item, currNode.next);
+    }
+
+  }
+
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item);
