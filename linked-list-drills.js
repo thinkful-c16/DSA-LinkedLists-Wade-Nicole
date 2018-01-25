@@ -31,6 +31,22 @@ class LinkedList {
     }
   }
 
+  insertAfter(item, key) {
+    if (this.head === null) {
+      this.insertFirst(item);
+    }
+    if (this.head.next === null) {
+      this.insertLast(item);
+    }
+    else {
+      let currNode = this.head;
+      while(currNode.value !== key) {
+        currNode = currNode.next;
+      }
+      currNode.next = new _Node(item, currNode.next);
+    }
+  }
+
   insertLast(item) {
     if (this.head === null) {
       this.insertFirst(item);
@@ -95,6 +111,7 @@ function main() {
   SLL.insertLast('Tauhida');
   SLL.remove('squirrel');
   SLL.insertBefore('Athena', 'Boomer');
+  SLL.insertAfter('Hotdog', 'Helo');
   console.log(JSON.stringify(SLL, null, 2));
 
 }
