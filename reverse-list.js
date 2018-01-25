@@ -197,36 +197,17 @@ const supplemental = {
 };
 
 function reverseAList(list) {
-  if (!list.head) {
-    return 'Cannot reverse empty list.';
+  let secondNode = null;
+  let currNode = list.head;
+  while (currNode !== null) {
+    let firstNode = currNode.next;
+    currNode.next = secondNode;
+    secondNode = currNode;
+    currNode = firstNode;
   }
-  if (list.head.next === null) {
-    return list;
-  }
-  else {
-    let firstNode = null;
-    let secondNode = null;
-    let thirdNode = null;
-    let prevNode = null;
-    let currNode = list.head;
-    while (currNode.next !== null) {
-      console.log('loop iterating');
-      firstNode = Object.assign({}, currNode);
-      secondNode = Object.assign({}, secondNode);
-      // thirdNode = secondNode.next;
-      // console.log('thirdNode:', JSON.stringify(thirdNode));
-      firstNode.next = prevNode;
-      secondNode.next = firstNode;
-      prevNode = Object.assign({}, firstNode);
-      // console.log('first, second nodes:', JSON.stringify(firstNode),'HERE', JSON.stringify(secondNode));
-      console.log(currNode);
-      currNode = currNode.next;
-    }
-    list.head = currNode;
-    return console.log(JSON.stringify(list, null, 2));
-
-    // list.head = currNode;
-  }
+  list.head = secondNode;
+  console.log(JSON.stringify(list));
+  return list;
 }
 
 
