@@ -1,0 +1,13 @@
+We want to move from the head of the list to the end of the list
+and reverse the next property for each item, as we go, to point backwards
+
+1. implement a while loop, where condition will necessarily take us
+to the last node in the list (we iterate from one node to next every time)
+
+*starting loop with list.head as 'currentNode'*
+
+2. store the Node in currentNode.next as a variable.
+
+3. reassign currentNode.next to be null
+
+4. 

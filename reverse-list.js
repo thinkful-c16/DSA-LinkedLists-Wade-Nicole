@@ -129,7 +129,7 @@ function main() {
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3);
   SLL.remove('Tauhida');
-//   console.log(JSON.stringify(SLL, null, 2));
+  console.log(JSON.stringify(SLL, null, 2));
 }
 
 const supplemental = {
@@ -196,11 +196,39 @@ const supplemental = {
   }
 };
 
+function reverseAList(list) {
+  if (!list.head) {
+    return 'Cannot reverse empty list.';
+  }
+  if (list.head.next === null) {
+    return list;
+  }
+  else {
+    let firstNode = null;
+    let secondNode = null;
+    let thirdNode = null;
+    let prevNode = null;
+    let currNode = list.head;
+    while (currNode.next !== null) {
+      console.log('loop iterating');
+      firstNode = Object.assign({}, currNode);
+      secondNode = Object.assign({}, secondNode);
+      // thirdNode = secondNode.next;
+      // console.log('thirdNode:', JSON.stringify(thirdNode));
+      firstNode.next = prevNode;
+      secondNode.next = firstNode;
+      prevNode = Object.assign({}, firstNode);
+      // console.log('first, second nodes:', JSON.stringify(firstNode),'HERE', JSON.stringify(secondNode));
+      console.log(currNode);
+      currNode = currNode.next;
+    }
+    list.head = currNode;
+    return console.log(JSON.stringify(list, null, 2));
+
+    // list.head = currNode;
+  }
+}
+
 
 main();
-// supplemental.display(SLL);
-// console.log('The size of the list is:', supplemental.size(SLL));
-// console.log(supplemental.isEmpty(SLL));
-// console.log(supplemental.findPrevious(SLL, 'Starbuck'));
-// console.log(supplemental.findLast(SLL));
-
+reverseAList(SLL);
